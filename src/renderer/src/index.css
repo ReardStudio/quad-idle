@@ -1,0 +1,93 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #121418;
+  --color-card: #1a1d23;
+  --color-card2: #232730;
+  --color-hover: #2d323d;
+  --color-line: #2a2e37;
+  --color-fg: #e8eaef;
+  --color-muted: #8d95a5;
+  --color-accent: #f5c542;
+  --color-on-accent: #1a1300;
+  --color-bad: #ff6b6b;
+  --color-ok: #4cd39a;
+  --color-warn: #ffc43d;
+}
+
+@layer base {
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font:
+      13px/1.4 'Segoe UI Variable Text',
+      'Segoe UI',
+      system-ui,
+      sans-serif;
+    overflow: hidden;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+
+  input,
+  select,
+  textarea {
+    background: #0e1014;
+    color: var(--color-fg);
+    border: 1px solid var(--color-line);
+    border-radius: 5px;
+    padding: 5px 9px;
+  }
+
+  input[type='number'] {
+    width: 72px;
+  }
+
+  button {
+    background: var(--color-card2);
+    color: var(--color-fg);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 5px 9px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: var(--color-hover);
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  button.on {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-weight: 600;
+  }
+
+  header {
+    -webkit-app-region: drag;
+  }
+
+  header button,
+  header select,
+  header label {
+    -webkit-app-region: no-drag;
+  }
+}

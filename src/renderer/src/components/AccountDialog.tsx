@@ -7,7 +7,7 @@ interface Props {
   acc: Account | null;
   defaultName: string;
   defaultUrl: string;
-  onSave: (v: { name: string; url: string; }) => void;
+  onSave: (v: { name: string; url: string }) => void;
   onClose: () => void;
 }
 
@@ -15,7 +15,10 @@ export default function AccountDialog({ acc, defaultName, defaultUrl, onSave, on
   const [name, setName] = useState(acc?.name ?? defaultName);
   const [url, setUrl] = useState(acc?.url ?? defaultUrl);
   const nameRef = useRef<HTMLInputElement>(null);
-  useEffect(() => nameRef.current?.select(), []);
+  
+  useEffect(() => {
+    nameRef.current?.select();
+  }, []);
 
   return (
     <Dialog title={acc ? 'Editar conta' : 'Criar conta'} onClose={onClose}>
@@ -25,7 +28,7 @@ export default function AccountDialog({ acc, defaultName, defaultUrl, onSave, on
       <input className={FULL} id="accUrl" type="text" placeholder="https://....." value={url} onChange={e => setUrl(e.target.value)} />
       <Actions>
         <button onClick={onClose}>Cancelar</button>
-        <button className="on" onClick={() => onSave({ name: name.trim().slice(0, 20) || 'Conta', url: normalizeUrl(url)})}>
+        <button className="on" onClick={() => onSave({ name: name.trim().slice(0, 20) || 'Conta', url: normalizeUrl(url) })}>
           Salvar
         </button>
       </Actions>

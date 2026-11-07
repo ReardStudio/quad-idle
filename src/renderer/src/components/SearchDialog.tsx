@@ -19,8 +19,13 @@ export default function SearchDialog({ accounts, visible, onPick, onClose }: Pro
   const term = q.trim().toLowerCase();
   const found = accounts.map((a, i) => ({ a, i })).filter(({ a, i }) => !term || a.name.toLowerCase().includes(term) || String(i + 1) === term);
 
-  useEffect(() => inputRef.current?.focus(), []);
-  useEffect(() => selRef.current?.scrollIntoView({ block: 'nearest' }), [sel, q]);
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    selRef.current?.scrollIntoView({ block: 'nearest' });
+  }, [sel, q]);
 
   const onKey = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'ArrowDown') {

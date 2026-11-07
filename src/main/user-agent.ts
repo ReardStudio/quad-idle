@@ -1,1 +1,0 @@
-export const cleanUserAgent = (base: string) => base.replace(/\s*Electron\/[\d.]+/i, '').replace(/\s[\w.-]+\/[\d.]+(?=\sChrome\/)/, '');

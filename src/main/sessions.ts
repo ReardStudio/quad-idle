@@ -6,7 +6,6 @@ import { gamePartition, orphanDirs } from '../shared/partitions';
 import { safeId } from '../shared/validate';
 import { readSaved } from './config-store';
 import * as log from './log';
-import { cleanUserAgent } from './user-agent';
 
 const ready = new Set<string>();
 
@@ -15,7 +14,6 @@ export function setupSession(id: string) {
   if (ready.has(partition)) return;
   ready.add(partition);
   const ses = session.fromPartition(partition);
-  ses.setUserAgent(cleanUserAgent(ses.getUserAgent()));
   ses.setPermissionRequestHandler((_wc, _perm, cb) => cb(false));
   ses.setPermissionCheckHandler(() => false);
 }
